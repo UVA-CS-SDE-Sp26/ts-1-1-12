@@ -1,0 +1,15 @@
+TopSecret Filehandler 2/3/26
+Ryder McCoy-Hansen rpw8ff
+
+The topsecret class is the program entry point
+This class takes a index of a file, parses a list of the files in the directory, then return the data in that specific file
+
+Goals:
+You are responsible for the part of the problem that reads data files.
+The program should expect files in a folder named data (in the same directory of the program, or in the root of your project folder.)
+When a request for a file is received, this part of the program will return the file contents.
+This part of the program should handle all the direct access to files.
+Document the plan your team makes for the design of your software in a text file named filehandler.txt.
+
+Tests:
+Ensure the correct file is returned wit the correct data type
