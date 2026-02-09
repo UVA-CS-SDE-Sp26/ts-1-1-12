@@ -11,5 +11,42 @@ When a request for a file is received, this part of the program will return the 
 This part of the program should handle all the direct access to files.
 Document the plan your team makes for the design of your software in a text file named filehandler.txt.
 
+Psuedo Code:
+let dataFolder = "data"
+let filenames = empty list of strings
+
+Constructor:
+    CREATE File object using dataFolder
+    If folder does not exist OR is not a directory
+        error "Data folder does not exist"
+
+listfiles()
+    CLEAR filenames list
+
+    CREATE File object using dataFolder
+    files = list of all items in folder
+
+    If files is not null
+        FOR EACH item IN files
+            If item is a file
+                ADD item name to filenames
+
+readfile(filename)
+    filePath = dataFolder + file separator + fileName
+    CREATE File object using filePath
+
+    If file does not exist OR is not a file
+        error "File not found"
+
+    contents = empty string
+
+    OPEN file for reading
+    While there is a next line
+        Read line
+        Append line and newline to contents
+    Close file
+    Return contents
+
+
 Tests:
-Ensure the correct file is returned wit the correct data type
+Ensure the correct file is returned with the correct data type
