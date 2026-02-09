@@ -19,8 +19,6 @@ class filehandler {
         }
     }
 
-    // ===== GETTERS =====
-
     public String getDataFolder() {
         return dataFolder;
     }
@@ -29,16 +27,12 @@ class filehandler {
         return filenames;
     }
 
-    // ===== SETTERS =====
-
     public void setFilenames(List<String> filenames) {
         if (filenames == null) {
             throw new IllegalArgumentException("filenames cannot be null");
         }
         this.filenames = filenames;
     }
-
-    // ===== METHODS =====
 
     public void listFiles() {
         filenames.clear(); // avoid duplicates
