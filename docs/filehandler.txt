@@ -49,4 +49,15 @@ readfile(filename)
 
 
 Tests:
-Ensure the correct file is returned with the correct data type
+Constructor----
+Verify constructor throws exception if data folder does not exist; expects IllegalStateException.
+Verify constructor works correctly when data folder exists; expects no exception.
+
+listFiles----
+Check that listFiles() finds and stores all file names in the folder; expects list to contain all files.
+Ensure listFiles() does not duplicate entries on multiple calls; expects correct file count after repeated calls.
+
+readfile----
+Verify readFile() reads file content correctly; expects returned string to contain expected content.
+Ensure error is thrown when reading a non-existent file; expects IOException.
+Verify directories cannot be read as files; expects IOException.
