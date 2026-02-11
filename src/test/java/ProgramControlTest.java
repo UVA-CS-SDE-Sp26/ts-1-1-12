@@ -35,11 +35,10 @@ class ProgramControlTest {
         filehandler mockFH = mock(filehandler.class);
 
         // 2. Define Behavior
-        // Note: We mock listFiles() to do nothing, and getFilenames() to return data
         doNothing().when(mockFH).listFiles();
         when(mockFH.getFilenames()).thenReturn(Arrays.asList("alpha.txt", "beta.txt"));
 
-        // 3. Inject Mock into ProgramControl (Using the constructor we made)
+        // 3. Inject Mock into ProgramControl
         ProgramControl ctrl = new ProgramControl(mockFH);
 
         // 4. Act
@@ -50,7 +49,7 @@ class ProgramControlTest {
         assertTrue(output.contains("01 alpha.txt"));
         assertTrue(output.contains("02 beta.txt"));
 
-        // 6. Verify Interaction (Ensure C actually called B)
+        // 6. Verify Interaction
         verify(mockFH, times(1)).listFiles();
     }
 
