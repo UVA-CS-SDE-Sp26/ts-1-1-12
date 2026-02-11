@@ -1,0 +1,22 @@
+To run the program, first type  "java topsecret"
+
+Running this command will output all avaiable files that could be displayed:
+Ex. :
+
+01 filea.txt
+02 fileb.txt
+03 filec.txt
+
+To access a file, restart the program nad type in "java topsecret __" filling in the empty __ with the number next to the desired file
+
+
+Tests:
+ensure argument is the correct type and size
+
+ensure that if no argument is given, calls to print out list of files
+
+ensure that if valid argument is given calls to print out file content
+
+
+main:
+

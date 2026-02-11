@@ -4,48 +4,59 @@ import java.util.List;
 public class ProgramControl {
 
     private filehandler fh;
+    public ProgramControl() {
+        this.fh = new filehandler();
+    }
 
     public ProgramControl(filehandler fh) {
         this.fh = fh;
     }
 
-    public String handleRequest(String[] args) {
+    /**
+     * Called when user runs "java topsecret" (no args)
+     */
+    public void displayFilesListed() {
+        fh.listFiles();
+        List<String> files = fh.getFilenames();
+
+        if (files.isEmpty()) {
+            System.out.println("No files found in data folder.");
+            return;
+        }
+
+        // Print the list with numbers: 01 filea.txt
+        for (int i = 0; i < files.size(); i++) {
+            System.out.printf("%02d %s%n", i + 1, files.get(i));
+        }
+    }
+
+    /**
+     * Called when user runs "java topsecret 1"
+     */
+    public void displayFileContents(int fileIndex) {
         try {
-            // Refresh the file list
+            // We must refresh the list to map the Number (1) to a Name (filea.txt)
             fh.listFiles();
             List<String> files = fh.getFilenames();
 
-            // No arguments -> List all files
-            if (args.length == 0) {
-                if (files.isEmpty()) {
-                    return "No files found in data folder.";
-                }
+            // Convert 1-based index (User input) to 0-based index (List)
+            int internalIndex = fileIndex - 1;
 
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < files.size(); i++) {
-                    // Formating: 01 filename.txt
-                    sb.append(String.format("%02d %s%n", i + 1, files.get(i)));
-                }
-                return sb.toString().trim();
+            if (internalIndex < 0 || internalIndex >= files.size()) {
+                System.out.println("Error: File number out of range.");
+                return;
             }
 
-            // User selected a file number -> Show content
-            int fileIndex = Integer.parseInt(args[0]) - 1; // Convert 1-based to 0-based
+            String fileName = files.get(internalIndex);
 
-            if (fileIndex < 0 || fileIndex >= files.size()) {
-                return "Error: File number out of range.";
-            }
+            // Read and print the content
+            String content = fh.readFile(fileName);
+            System.out.println(content);
 
-            String targetFileName = files.get(fileIndex);
-            String content = fh.readFile(targetFileName);
-            return content;
-
-        } catch (NumberFormatException e) {
-            return "Error: Argument must be a valid number.";
         } catch (IOException e) {
-            return "Error reading file: " + e.getMessage();
+            System.out.println("Error reading file: " + e.getMessage());
         } catch (Exception e) {
-            return "An unexpected error occurred: " + e.getMessage();
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
 }
