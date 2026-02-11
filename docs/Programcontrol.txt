@@ -1,0 +1,12 @@
+Tasks:
+1. Connect the command line interface from Member A to the file manager Member B
+    Member A will provide a number etc. I will have to turn that number into a file name and
+    pass it to Member B.
+
+
+Tests:
+Test 1: When the controller requests a file list, ensure it returns a string array where each
+        item starts with a two-digit number.
+
+Test 2: When the controller requests file '99' (which doesn't exist), ensure it returns a
+        specific error message.
