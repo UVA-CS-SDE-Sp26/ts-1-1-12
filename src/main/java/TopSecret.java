@@ -3,10 +3,16 @@
  */
 
 public class TopSecret {
-    static ProgramControl control = new ProgramControl();
+    static ProgramControl control;
+    static ProgramControl getControl() {
+        if (control == null) {
+            control = new ProgramControl();
+        }
+        return control;
+    }
     public static void main(String[] args) {
         if (args.length == 0){
-            control.displayFilesListed();
+            getControl().displayFilesListed();
             return;
         }
         if(args.length >= 2){
@@ -22,7 +28,7 @@ public class TopSecret {
             return;
         }
 
-        control.displayFileContents(fileIndex); // if arg length == 1
+        getControl().displayFileContents(fileIndex); // if arg length == 1
     }
 
 }

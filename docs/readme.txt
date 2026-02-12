@@ -28,3 +28,9 @@ getSpecificFileName(int fileIndex):
     call getFileContent(string FileName)
 
 
+<<<<<<< HEAD
+=======
+
+To run the file, firs cd into src/main/java, compile with javac *.java
+the the fiel should run from earlier selected directory with commands detailed in the user interface
+>>>>>>> testWorking
