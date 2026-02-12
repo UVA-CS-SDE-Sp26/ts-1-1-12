@@ -21,31 +21,33 @@ class TopSecretTest {
         verify(mockControl, never()).displayFileContents(anyInt());
 
         // 5. Reset static field to avoid affecting other tests
-        TopSecret.control = new ProgramControl();
+        TopSecret.control = null;
     }
     @Test
     void main1Argument() {
         ProgramControl mockControl = mock(ProgramControl.class);
         TopSecret.control = mockControl;
 
+
         TopSecret.main(new String[]{"1"});
 
         verify(mockControl, times(1)).displayFileContents(1);
         verify(mockControl, never()).displayFilesListed();
 
-        TopSecret.control = new ProgramControl(); // reset
+        TopSecret.control = null; // reset
     }
     @Test
     void mainInvalidArgument() {
         ProgramControl mockControl = mock(ProgramControl.class);
         TopSecret.control = mockControl;
 
+
         TopSecret.main(new String[]{"a"}); // non-integer
 
         verify(mockControl, never()).displayFilesListed();
         verify(mockControl, never()).displayFileContents(anyInt());
 
-        TopSecret.control = new ProgramControl(); // reset
+        TopSecret.control = null; // reset
     }
     @Test
     void main2Argument() {
@@ -57,6 +59,6 @@ class TopSecretTest {
         verify(mockControl, never()).displayFilesListed();
         verify(mockControl, never()).displayFileContents(anyInt());
 
-        TopSecret.control = new ProgramControl(); // reset
+        TopSecret.control = null; // reset
     }
 }
