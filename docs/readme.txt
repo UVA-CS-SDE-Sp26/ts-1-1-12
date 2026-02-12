@@ -1,5 +1,9 @@
 TopSecret documentation starter file
 
+PROGRAM ENTRY POINT IS TOPSECRET CLASS
+RUN TOPSECRET FROM DOCS FOLDER WITH COMMAND (JAVA TOPSECRET)
+DATA FOLDER MUST BE IN SRC/MAIN/JAVA
+
 
 A: asks for user input and return a string
 if no arguemtn, display files
@@ -22,4 +26,5 @@ program control class:
 getSpecificFileName(int fileIndex):
     string[] files = getFiles();
     call getFileContent(string FileName)
+
 

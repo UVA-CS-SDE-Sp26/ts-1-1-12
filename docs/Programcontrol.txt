@@ -4,9 +4,83 @@ Tasks:
     pass it to Member B.
 
 
-Tests:
-Test 1: When the controller requests a file list, ensure it returns a string array where each
-        item starts with a two-digit number.
+Psuedo Code:
 
-Test 2: When the controller requests file '99' (which doesn't exist), ensure it returns a
-        specific error message.
+class ProgramControl:
+
+    on initialize:
+        Setup a FileHandler to manage file operations
+
+    function displayFilesListed():
+        tell FileHandler to scan the folder
+        get the list of filenames
+
+        if the list is empty THEN:
+            print "No files found"
+            exit function
+
+        for each file in the list:
+            print (Current Index + 1) and the Filename
+
+    function displayFileContents(user_choice_number):
+        try:
+            tell FileHandler to scan the folder again (refresh)
+            get the list of filenames
+
+            set internal_index = user_choice_number - 1
+
+            if internal_index is invalid (out of list bounds) THEN:
+                PRINT "Error: File number out of range"
+                EXIT function
+
+            set target_file = filename at internal_index
+            set file_text = READ contents of target_file
+
+            print file_text
+
+        catch Read/Write Error:
+            print "Error reading file" and the reason
+
+        catch Other Errors:
+            print "An unexpected error occurred"
+
+ Test Psudeo:
+ class programcontroltest:
+
+     before each test:
+         setup a way to capture everything the program prints to the screen.
+         this lets the test "read" what the user would normally see.
+
+     after each test:
+         stop capturing the output and reset the screen settings to normal.
+
+     ---
+
+     test: display_list_format
+         1. create a mock (fake) file handler.
+         2. tell the mock to act like it found "alpha.txt" and "beta.txt".
+         3. run the command to list files.
+         4. check the captured text for "01 alpha.txt" and "02 beta.txt".
+         5. verify the program actually triggered the folder scan.
+
+     test: display_empty_folder
+         1. tell the mock file handler to return an empty list.
+         2. run the command to list files.
+         3. check that the output says "no files found".
+
+     test: display_content_success
+         1. tell the mock that file 1 is "target.txt".
+         2. tell the mock to return "secret message" when "target.txt" is read.
+         3. run the command to show content for file 1.
+         4. check that "secret message" was printed exactly as expected.
+
+     test: display_content_bad_index
+         1. tell the mock there is only 1 file available.
+         2. try to run the command for file 5.
+         3. check that the output contains an "error" message regarding the "range".
+
+     test: display_content_read_failure
+         1. tell the mock there is a file called "corrupt.txt".
+         2. tell the mock to trigger a "disk failure" error when that file is opened.
+         3. try to run the command for file 1.
+         4. check that the program caught the error and printed "error reading file: disk failure".
