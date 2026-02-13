@@ -15,7 +15,7 @@ public class TopSecret {
             getControl().displayFilesListed();
             return;
         }
-        if(args.length >= 2){
+        if(args.length > 2) {
             System.err.println("Error too many arguments");
             return;
         }
@@ -27,7 +27,9 @@ public class TopSecret {
             System.err.println("Error in file index");
             return;
         }
-
+        if(args.length == 2){
+            String key = args[1];
+        }
         getControl().displayFileContents(fileIndex); // if arg length == 1
     }
 

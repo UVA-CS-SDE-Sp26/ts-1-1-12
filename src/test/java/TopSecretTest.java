@@ -54,7 +54,19 @@ class TopSecretTest {
         ProgramControl mockControl = mock(ProgramControl.class);
         TopSecret.control = mockControl;
 
-        TopSecret.main(new String[]{"1", "2"}); // too many args
+        TopSecret.main(new String[]{"1", "a"});
+
+        verify(mockControl, times(1)).displayFileContents(1);
+        verify(mockControl, never()).displayFilesListed();
+
+        TopSecret.control = null; // reset
+    }
+    @Test
+    void tooManyArugments() {
+        ProgramControl mockControl = mock(ProgramControl.class);
+        TopSecret.control = mockControl;
+
+        TopSecret.main(new String[]{"1", "a", "a"});
 
         verify(mockControl, never()).displayFilesListed();
         verify(mockControl, never()).displayFileContents(anyInt());

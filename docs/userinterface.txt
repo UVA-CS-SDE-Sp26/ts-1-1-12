@@ -1,4 +1,4 @@
-To run the program, first type  "java topsecret"
+To run the program, first type  "java TopSecret"
 
 Running this command will output all avaiable files that could be displayed:
 Ex. :
@@ -7,15 +7,21 @@ Ex. :
 02 fileb.txt
 03 filec.txt
 
-To access a file, restart the program nad type in "java topsecret __" filling in the empty __ with the number next to the desired file
+To access a file, restart the program nad type in "java TopSecret __" filling in the empty __ with the number next to the desired file
 
+There is also an extra field "java TopSecret XX ___", filling in the mepotyy __ is used as a key for deciphering,
+The second argument is accepted but ignored for three-member groups
 
 Tests:
-ensure argument is the correct type and size
+ensure argument [0] is the correct type (int)
 
 ensure that if no argument is given, calls to print out list of files
 
 ensure that if valid argument is given calls to print out file content
+
+ensure that it runs if given a key in argument 2
+
+ensure that it throws an error if more than 2 arguments are given
 
 
 main:
